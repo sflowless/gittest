@@ -10,6 +10,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
@@ -18,14 +19,25 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
-"Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'MultipleSearch'
 
 " NERDTree options
 nmap <F7> :NERDTreeToggle<CR>
+let g:NERDTreeShowBookmarks = 1
+let NERDTreeHijackNetrw = 0
+function! GotoTree()
+    :NERDTree %:p:h
+endfunction
+let NERDTreeMapActivateNode=''
+let NERDTreeHijackNetrw = 1
 
 " Syntastic options
 execute pathogen#infect()
@@ -107,5 +119,30 @@ nmap <F8> :TagbarToggle<CR>
 " indent-guides options
 let g:indent_guides_enable_on_vim_startup = 1
 
+" youcompleteme options
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['', '']
+let g:ycm_key_list_previous_completion = ['', '']
+let g:SuperTabDefaultCompletionType = ''
+let g:ycm_autoclose_preview_window_after_completion=1
+map g :YcmCompleter GoToDefinitionElseDeclaration
+let g:ycm_semantic_triggers =  {
+\   'c' : ['->', '.'],
+\   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+\             're!\[.*\]\s'],
+\   'ocaml' : ['.', '#'],
+\   'cpp,objcpp' : ['->', '.', '::'],
+\   'perl' : ['->'],
+\   'php' : ['->', '::'],
+\   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+\   'ruby' : ['.', '::'],
+\   'lua' : ['.', ':'],
+\   'erlang' : [':'],
+\ }
+
 call vundle#end()
 filetype plugin indent on
+
