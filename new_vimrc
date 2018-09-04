@@ -120,6 +120,9 @@ nmap <F8> :TagbarToggle<CR>
 let g:indent_guides_enable_on_vim_startup = 1
 
 " youcompleteme options
+" fixed error:
+"   cd ~/.vim/bundle/youcompleteme
+"   ./install.py
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
